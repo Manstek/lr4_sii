@@ -4,13 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Результаты обработки</title>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 </head>
 <body>
     <h1>Результаты обработки данных</h1>
 
     {% if plot_url %}
         <h2>График:</h2>
-        <img src="data:image/png;base64,{{ plot_url }}" alt="График">
+        {{ plot_url|safe }}
     {% endif %}
 
     <form method="POST" action="{% url 'start' %}">

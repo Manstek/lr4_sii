@@ -3,18 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <title>Результаты</title>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 </head>
 <body>
     <h1>Результаты обучения</h1>
 
     <h2>График сравнения весов нейронов:</h2>
-    <img src="data:image/png;base64,{{ plot_url1 }}" alt="Сравнение весов нейронов">
+    {{ plot_url1|safe }}
 
     <h2>Масштабированные вектора весов с утомляемостью:</h2>
-    <img src="data:image/png;base64,{{ plot_url2 }}" alt="Масштабированные вектора весов с утомляемостью">
+    {{ plot_url2|safe }}
 
     <h2>Масштабированные вектора весов без утомляемости:</h2>
-    <img src="data:image/png;base64,{{ plot_url3 }}" alt="Масштабированные вектора весов без утомляемости">
+    {{ plot_url3|safe }}
 
     <h3>Время обучения классическим алгоритмом: {{ classic_time }} секунд</h3>
     <h3>Время обучения с утомляемостью: {{ fat_time }} секунд</h3>
