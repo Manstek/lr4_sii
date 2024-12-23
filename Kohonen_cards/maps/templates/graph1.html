@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Результаты обработки</title>
+</head>
+<body>
+    <h1>Результаты обработки данных</h1>
+
+    {% if plot_url %}
+        <h2>График:</h2>
+        <img src="data:image/png;base64,{{ plot_url }}" alt="График">
+    {% endif %}
+
+    <form method="POST" action="{% url 'start' %}">
+        {% csrf_token %}
+        <label for="num_clusters">Введите количество кластеров:</label>
+        <input type="number" name="num_clusters" id="num_clusters" required><br><br>
+        <button type="submit">Отправить</button>
+    </form>
+</body>
+</html>
