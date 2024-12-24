@@ -6,9 +6,11 @@ from django.http import HttpResponse
 
 import numpy as np
 
+
 def find_closest_neuron(input_point, neuron_weights):
     distances = np.linalg.norm(neuron_weights - input_point, axis=1)
     return np.argmin(distances)
+
 
 # 2. Классическое обучение ("Победитель забирает всё")
 def kohonen_train_classic(data_points, neuron_weights, num_iterations, initial_learning_rate=0.5):
@@ -18,6 +20,7 @@ def kohonen_train_classic(data_points, neuron_weights, num_iterations, initial_l
             winning_neuron = find_closest_neuron(data_point, neuron_weights)
             neuron_weights[winning_neuron] += learning_rate * (data_point - neuron_weights[winning_neuron])
     return neuron_weights
+
 
 def kohonen_train_with_fatigue(data_points, neuron_weights, neuron_fatigue, num_iterations, initial_learning_rate=0.5):
     for iteration in range(num_iterations):
@@ -40,6 +43,7 @@ def parse_txt_file(file):
         except ValueError:
             continue 
     return np.array(points)
+
 
 # Представление для загрузки файла и построения графика
 def kohonen_view(request):
@@ -68,6 +72,7 @@ def kohonen_view(request):
         return render(request, template_name='graph1.html', context={"plot_url": graph_html})
 
     return render(request, 'upload.html')
+
 
 def start(request):
     if request.method == 'POST':
